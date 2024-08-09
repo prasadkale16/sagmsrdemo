@@ -5,11 +5,6 @@ pipeline {
     IMAGE_VERSION='0.1.1'
   }
   stages {
-    stage('cleanup') {
-      steps {
-        sh 'docker system prune -a --volumes --force'
-      }
-    }
     stage('build image') {
       steps {
         sh 'docker build -t $IMAGE_NAME:$IMAGE_VERSION .'
