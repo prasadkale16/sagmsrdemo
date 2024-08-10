@@ -44,6 +44,7 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
+  serviceAccountName: docker-desktop
   rules:
   - host: localhost
     http:
