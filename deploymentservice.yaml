@@ -40,18 +40,18 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: msr-ingress
-  namespace: ingress-nginx
+  name: msr-demo-k8s
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
-  ingressClassName: "nginx"
   rules:
-  - host: msr.com
+  - host: localhost
     http:
       paths:
       - path: /
-        pathType: Prefix  
+        pathType: Prefix
         backend:
           service:
             name: msr-k8ssvc
-            port: 
+            port:
               number: 5555
