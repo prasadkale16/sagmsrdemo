@@ -43,6 +43,7 @@ metadata:
   name: msr-ingress
   namespace: default
 spec:
+  ingressClassName: nginx-class
   rules:
   - host: msr.com
     http:
