@@ -27,7 +27,9 @@ pipeline {
     }
     stage('ingress') {
       steps{
-        bat 'kubectl apply -f ingress.yaml -n default --validate=false'
+        script{
+          kubernetesDeploy configs: 'ingress.yaml', kubeConfig: [path: ''], kubeconfigId: 'kubernetes', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
+        }
       }
     }
   }
