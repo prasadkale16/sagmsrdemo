@@ -29,9 +29,8 @@ metadata: # Metadata of the resource kind we are creating
 spec:
   selector:
     app: msr-k8s
-  type: LoadBalancer # type of the service.
   ports:
     - protocol: "TCP"
       port: 5555 # The port that the service is running on in the cluster
       targetPort: 5555 # The port exposed by the service
-      nodePort: 32010
+  type: NodePort # type of the service.
