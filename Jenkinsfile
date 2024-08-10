@@ -27,7 +27,7 @@ pipeline {
     }
     stage('ingress') {
       steps{
-        bat 'kubectl apply -f ingress.yaml -n default'
+        bat 'kubectl version'
       }
     }
   }
