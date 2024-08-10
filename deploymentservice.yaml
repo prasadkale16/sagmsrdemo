@@ -37,16 +37,14 @@ spec:
 
 ---
 
-apiVersion: v1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: msr-demo-k8s
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+  name: msr-ingress
+  namespace: default
 spec:
-  serviceAccountName: docker-desktop
   rules:
-  - host: localhost
+  - host: msr.com
     http:
       paths:
       - path: /
