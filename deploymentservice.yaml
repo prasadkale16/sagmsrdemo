@@ -34,4 +34,4 @@ spec:
     - protocol: "TCP"
       port: 5555 # The port that the service is running on in the cluster
       targetPort: 5555 # The port exposed by the service
-      nodePort: 35010
+      nodePort: 32010
