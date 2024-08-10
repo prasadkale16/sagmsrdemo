@@ -26,8 +26,12 @@ pipeline {
       }
     }
     stage('ingress') {
-      withKubeConfig(caCertificate: '', clusterName: 'docker-desktop', contextName: 'docker-desktop', credentialsId: '', namespace: 'default', restrictKubeConfigAccess: false, serverUrl: 'https://kubernetes.docker.internal:6443') {
-        bat 'kubectl apply -f ingress.yaml -n default'
+      steps{
+        script{
+          withKubeConfig(caCertificate: '', clusterName: 'docker-desktop', contextName: 'docker-desktop', credentialsId: '', namespace: 'default', restrictKubeConfigAccess: false, serverUrl: 'https://kubernetes.docker.internal:6443') {
+          bat 'kubectl apply -f ingress.yaml -n default'
+          }
+        }
       }
     }
   }
