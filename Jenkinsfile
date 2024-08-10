@@ -26,10 +26,8 @@ pipeline {
       }
     }
     stage('ingress') {
-      steps{
-        script{
-          kubernetesDeploy configs: 'ingress.yaml', kubeConfig: [path: ''], kubeconfigId: 'kubernetes', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
-        }
+      withKubeConfig(caCertificate: '', clusterName: 'docker-desktop', contextName: 'docker-desktop', credentialsId: '', namespace: 'default', restrictKubeConfigAccess: false, serverUrl: 'https://kubernetes.docker.internal:6443') {
+        bat 'kubectl apply -f ingress.yaml -n default'
       }
     }
   }
