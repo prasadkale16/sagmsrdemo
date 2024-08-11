@@ -29,7 +29,7 @@ pipeline {
       steps{
         script{
           withKubeConfig(caCertificate: '', clusterName: 'docker-desktop', contextName: 'docker-desktop', credentialsId: '', namespace: 'default', restrictKubeConfigAccess: false, serverUrl: 'https://kubernetes.docker.internal:6443') {
-          bat 'kubectl apply -f ingress.yaml --validate=false'
+          bat 'kubectl apply -f ingress.yaml -n swag-intg --validate=false'
           }
         }
       }
