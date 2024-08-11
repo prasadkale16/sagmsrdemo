@@ -27,8 +27,8 @@ pipeline {
     }
     stage('ingress') {
       steps {
-        bat 'kubectl --kubeconfig=C:\\Users\Lenovo\\.kube\\config config use-context docker-desktop'  
-        bat 'kubectl --kubeconfig=C:\\Users\Lenovo\\.kube\\config apply -f ingress.yaml -n swag-intg --validate=false'
+        bat 'kubectl --kubeconfig=C:\\Users\\Lenovo\\.kube\\config config use-context docker-desktop'  
+        bat 'kubectl --kubeconfig=C:\\Users\\Lenovo\\.kube\\config apply -f ingress.yaml -n swag-intg --validate=false'
       }
     }
   }
