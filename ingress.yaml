@@ -4,7 +4,7 @@ metadata:
   name: msr-ingress
   namespace: swag-intg
 spec:
-  ingressClassName: class
+  ingressClassName: nginx
   rules:
   - host: msr.com
     http:
