@@ -12,7 +12,7 @@ spec:
       targetPort: 5555 # The port exposed by the service
   type: NodePort # type of the service.
 
-  ---
+---
 
 apiVersion: v1 # Kubernetes API version
 kind: Service # Kubernetes resource kind we are creating
