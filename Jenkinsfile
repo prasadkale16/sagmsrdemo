@@ -26,10 +26,9 @@ pipeline {
       }
     }
     stage('ingress') {
-      steps{
-        script{
-          kubernetesDeploy configs: 'ingress.yaml', kubeConfig: [path: ''], kubeconfigId: 'kubernetes', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
-        }
+      steps {
+        bat 'kubectl --kubeconfig=C:\\Users\Lenovo\\.kube\\config config use-context docker-desktop'  
+        bat 'kubectl --kubeconfig=C:\\Users\Lenovo\\.kube\\config apply -f ingress.yaml -n swag-intg --validate=false'
       }
     }
   }
