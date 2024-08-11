@@ -23,13 +23,13 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: msr-k8ssvc-custom
+            name: msr-k8ssvc
             port:
               number: 6666
       - path: /restv2
         pathType: Prefix
         backend:
           service:
-            name: msr-k8ssvc-custom
+            name: msr-k8ssvc
             port:
               number: 7777
