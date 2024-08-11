@@ -2,9 +2,9 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: msr-ingress
-  namespace: default
+  namespace: swag-intg
 spec:
-  ingressClassName: nginx-class
+  ingressClassName: class
   rules:
   - host: msr.com
     http:
