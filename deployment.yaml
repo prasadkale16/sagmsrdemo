@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: msr-k8s
-          image: localhost:5000/prasadkale16/sagmsrdemo:latest # Image that will be used to containers in the cluster
+          image: localhost:5000/prasadkale16/sagmsrdemo:123 # Image that will be used to containers in the cluster
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5555 # The port that the container is running on in the cluster
