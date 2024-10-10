@@ -3,12 +3,12 @@ pipeline {
   stages {
     stage('build image') {
       steps {
-        bat 'docker build -t localhost:5000/prasadkale16/sagmsrdemo .'
+        bat 'docker build -t localhost:5000/prasadkale16/sagmsrdemo:latest .'
       }
     }
     stage('push image') {
       steps {
-        bat 'docker push localhost:5000/prasadkale16/sagmsrdemo'
+        bat 'docker push localhost:5000/prasadkale16/sagmsrdemo:latest'
       }
     }
     stage('deploy') {
