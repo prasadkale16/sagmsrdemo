@@ -61,6 +61,8 @@ pipeline {
           def userInput = input message: 'Are you satisfied with the deployment?', ok: 'Proceed', parameters: [choice(name: 'Proceed with deployment?', choices: 'Yes\nNo', description: '')]
           if (userInput == 'No') {
             error("User is not satisfied with the deployment.")
+          }else{
+            echo "deployment is successfull"
           }
         }
       }
@@ -69,8 +71,9 @@ pipeline {
   post {
     failure {
       script {
+        echo "Cleaning up failed build."
         // Get current revision of the deployment
-        def rolloutHistory = sh(script: "kubectl rollout history deployment/msr-k8s-deployment -n swag-intg", returnStdout: true).trim()
+        def rolloutHistory = bat(script: "kubectl rollout history deployment/msr-k8s-deployment -n swag-intg", returnStdout: true).trim()
 
         // Parse the rollout history to get the current revision
         def revisions = []
@@ -109,6 +112,7 @@ pipeline {
     }
     always {
       script {
+        echo "Cleaning up workspace"
         deleteDir()
         if (currentBuild.result == 'FAILURE') {
           echo "Cleaning up failed build."
