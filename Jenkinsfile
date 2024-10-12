@@ -80,14 +80,20 @@ pipeline {
         rolloutHistory.eachLine { line ->
           if (line =~ /kubectl/) {
             // Ignore the command line
+            echo "command line"
           } else if (line.startsWith("deployment.apps")) {
             // Ignore header line
+            echo "header line"
           } else if (line =~ /REVISION/) {
             // Ignore the title line
+            echo "title line"
           } else {
             // Extract revision number from the list
+            echo "${line}"
             def revision = (line.split(" ")[0]).toInteger()
+            echo "${revision}"
             revisions.add(revision)
+            echo "${revisions}"
           }
         }
         echo "${revision}"
