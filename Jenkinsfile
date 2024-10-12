@@ -26,7 +26,6 @@ pipeline {
           """
           // Deploy the updated YAML with the new image tag
           bat 'kubectl apply -f deployment.yaml'
-          //kubernetesDeploy configs: 'deployment.yaml', kubeConfig: [path: ''], kubeconfigId: 'kubernetes', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
         }
       }
     }
@@ -34,7 +33,6 @@ pipeline {
       steps{
         script{
           bat 'kubectl apply -f service.yaml'
-          //kubernetesDeploy configs: 'service.yaml', kubeConfig: [path: ''], kubeconfigId: 'kubernetes', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
         }
       }
     }
