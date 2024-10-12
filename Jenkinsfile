@@ -94,10 +94,9 @@ pipeline {
             def revision = (line.split(" ")[0]).toInteger()
             echo "${revision}"
             revisions.add(revision)
-            echo "${revisions}"
           }
         }
-        echo "${revision}"
+        echo "${revisions}"
         // Sort revisions in reverse order to get the last one (which is the current)
         revisions = revisions.sort().reverse()
 
