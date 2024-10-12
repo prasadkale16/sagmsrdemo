@@ -7,6 +7,7 @@ spec:
   selector:
     matchLabels:
       app: msr-k8s
+  revisionHistoryLimit: 2
   replicas: 1 # Number of replicas that will be created for this deployment
   template:
     metadata:
