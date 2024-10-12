@@ -78,6 +78,7 @@ pipeline {
         // Parse the rollout history to get the current revision
         def revisions = []
         rolloutHistory.eachLine { line ->
+          echo "line is : ${line}"
           if (line =~ /kubectl/) {
             // Ignore the command line
             echo "command line"
