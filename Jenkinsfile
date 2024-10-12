@@ -109,7 +109,7 @@ pipeline {
     }
     always {
       script {
-        wsCleanup()
+        deleteDir()
         if (currentBuild.result == 'FAILURE') {
           echo "Cleaning up failed build."
             // Implement build cleanup logic here if necessary
