@@ -74,7 +74,7 @@ pipeline {
         echo "Cleaning up failed build."
         // Get current revision of the deployment
         def rolloutHistory = bat(script: "kubectl rollout history deployment/msr-k8s-deployment -n swag-intg", returnStdout: true).trim()
-
+        echo "${rolloutHistory}"
         // Parse the rollout history to get the current revision
         def revisions = []
         rolloutHistory.eachLine { line ->
@@ -84,17 +84,17 @@ pipeline {
             // Ignore the title line
           } else {
             // Extract revision number from the list
-            def revision = (line.split()[0]).toInteger()
+            def revision = (line.split(" ")[0]).toInteger()
             revisions.add(revision)
           }
         }
-
+        echo "${revision}"
         // Sort revisions in reverse order to get the last one (which is the current)
         revisions = revisions.sort().reverse()
 
         // Current revision would be the first item in the list
         def currentRevision = revisions[0]
-
+        echo "current revision : ${currentRevision}"
         // Rollback to the previous revision if exists
         if (revisions.size() > 1) {
           def previousRevision = revisions[1]
@@ -104,22 +104,11 @@ pipeline {
           echo "No previous revision to roll back to."
         }
       }
-      script {
-        // Delete the Docker image if the build fails
-        echo "Deleting Docker image ${IMAGE_TAG}..."
-        bat "docker rmi ${IMAGE_TAG} || echo 'Image not found or could not be deleted'"
-      }
     }
     always {
       script {
         echo "Cleaning up workspace"
         deleteDir()
-        if (currentBuild.result == 'FAILURE') {
-          echo "Cleaning up failed build."
-            // Implement build cleanup logic here if necessary
-            echo "Deleting Docker image ${IMAGE_TAG}..."
-            bat "docker rmi ${IMAGE_TAG} || echo 'Image not found or could not be deleted'"
-        }
       }
     } 
   }
