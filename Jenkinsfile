@@ -78,7 +78,9 @@ pipeline {
         // Parse the rollout history to get the current revision
         def revisions = []
         rolloutHistory.eachLine { line ->
-          if (line.startsWith("deployment.apps")) {
+          if (line =~ /kubectl/) {
+            // Ignore the command line
+          } else if (line.startsWith("deployment.apps")) {
             // Ignore header line
           } else if (line =~ /REVISION/) {
             // Ignore the title line
